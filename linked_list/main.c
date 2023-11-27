@@ -17,11 +17,12 @@ int main(void)
 	print_list(head);
 	add_node_at_index(&head, 5, 6);
 	print_list(head);
+	delete_node_at_index(&head, 4);
+	print_list(head);
 	delete_node_at_head(&head);
 	print_list(head);
 	delete_node_at_tail(&head);
 	print_list(head);
-	
 	free_list(&head);
 	print_list(head);
 	return (0);
