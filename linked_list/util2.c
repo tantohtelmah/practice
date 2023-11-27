@@ -2,58 +2,65 @@
 
 void delete_node_at_head(node_t **head)
 {
-	node_t *node, *tmp;
+	node_t *tmp;
 
-	while (!head)
+	if (!head || !*head)
 		return;
 	tmp = *head;
-	node = tmp->next;
-	tmp->next = NULL;
-	node = *head;
+	*head = tmp->next;
 	printf("This is the deleted value, %d\n", tmp->data);
+	free(tmp);
 
 }
 
 void delete_node_at_tail(node_t **head)
 {
-	node_t *node, *tmp;
+	node_t *tmp;
 
-	if (!head)
-		return;
-	if (!*head)
+	if (!head || !*head)
 		return;
 	tmp = *head;
-	while (tmp && tmp->next)
+	printf("Deleting at tail\n");
+	fflush(stdout);
+	if (!tmp->next)
 	{
+		free(tmp);
+		*head = NULL;
+		return;
+	}
+	while (tmp)
+	{
+		if (tmp->next && !tmp->next->next)
+		{
+			free(tmp->next);
+			tmp->next = NULL;
+			break;
+		}
 		tmp = tmp->next;
 	}
-	tmp = NULL;
-
 	printf("tail\n");
 }
 
 void delete_node_at_index(node_t **head, int idx)
 {
-	node_t *tmp, *prev_node = NULL;
+	node_t *tmp, *del_node;
 	int i = 0;
 
-	if (!head)
+	if (!head || !*head)
 		return;
 	tmp = *head;
 	if (idx == 0)
 	{
-		printf("invalid index\n");
-		return;
+		*head = (*head)->next;
+		free(tmp);
 	}
-	while (tmp)
+	while (tmp && tmp->next)
 	{
 		if (i == idx - 1)
 		{
-			prev_node = tmp;
-		}
-		if (i == idx)
-		{
-			prev_node->next = tmp->next;
+			del_node = tmp->next;
+			tmp->next = del_node->next;
+			free(del_node);
 		}
 		i++;
 		tmp = tmp->next;
