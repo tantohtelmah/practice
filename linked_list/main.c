@@ -17,7 +17,7 @@ int main(void)
 	print_list(head);
 	add_node_at_index(&head, 5, 6);
 	print_list(head);
-	delete_node_at_index(&head, 4);
+	delete_node_at_index(&head, 0);
 	print_list(head);
 	delete_node_at_head(&head);
 	print_list(head);

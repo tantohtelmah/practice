@@ -42,7 +42,8 @@ void delete_node_at_index(node_t **head, int idx)
 	tmp = *head;
 	if (idx == 0)
 	{
-		printf("invalid index");
+		printf("invalid index\n");
+		return;
 	}
 	while (tmp)
 	{
