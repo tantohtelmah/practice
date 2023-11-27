@@ -46,16 +46,15 @@ void delete_node_at_index(node_t **head, int idx)
 	}
 	while (tmp)
 	{
-		i++;
 		if (i == idx - 1)
 		{
 			prev_node = tmp;
-			continue;
 		}
 		if (i == idx)
 		{
 			prev_node->next = tmp->next;
 		}
+		i++;
 		tmp = tmp->next;
 	}
 
